@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "flask-systrans"
+version = "0.1.0"
+description = "Sistema de gerenciamento de um negócio de transporte de passageiros para o Seu Francisco. Projeto para a matéria Programação Web."
+authors = ["Natália Fonseca <nataliabf@outlook.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.0.3"
+Flask-Login = "^0.5.0"
+Flask-SQLAlchemy = "^2.5.1"
+Flask-Migrate = "^3.1.0"
+Flask-WTF = "^1.0.0"
+bcrypt = "^3.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
