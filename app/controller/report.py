@@ -1,6 +1,7 @@
 from app import app
 from app.model.forms.report import ReportForm
 from app.model.tables.ride import Ride
+from app.model.tables.vehicle import Vehicle
 from flask import redirect, render_template, url_for
 from flask_login import current_user
 from datetime import datetime
@@ -41,8 +42,21 @@ def report():
         )
 
     total = 0
+    van = 0
+    car = 0
+    bus = 0
+
     for ride in rides_list:
         total += ride.price
+        vehicle = Vehicle.query.filter_by(
+            plate=f'{ride.vehicle_plate}'
+        ).first()
+        if vehicle.type == 'Van':
+            van += 1
+        elif vehicle.type == 'Carro':
+            car += 1
+        elif vehicle.type == 'Onibus':
+            bus += 1
 
     return render_template(
         'report.html',
@@ -50,4 +64,7 @@ def report():
         username=username,
         form=form,
         total=total,
+        van=van,
+        car=car,
+        bus=bus,
     )
