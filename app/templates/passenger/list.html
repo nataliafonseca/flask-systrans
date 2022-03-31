@@ -1,9 +1,5 @@
 {% extends 'application.html' %}
 
-{% block inner_stylesheet %}
-<link rel="stylesheet" href="../static/css/lists.css">
-{% endblock %}
-
 {% block app_content %}
 <div class="container">
   <div class="content">
@@ -18,7 +14,9 @@
         </a>
         <h2>PASSAGEIROS</h2>
       </div>
-      <a href="{{ url_for('register_passenger') }}" class="btn btn-primary">ADICIONAR</a>
+      <a class="me-4" href="{{ url_for('register_passenger') }}">
+        ADICIONAR
+      </a>
     </div>
     <table class="table">
       <thead>
