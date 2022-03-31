@@ -9,82 +9,96 @@
   <div class="content">
     <div class="subtitle">
       <div>
-        <a class="me-4" href="{{ url_for('list_passengers') }}">
+        <a class="me-4" href="{{ url_for('list_vehicles') }}">
           <svg xmlns="http://www.w3.org/2000/svg" class="back-button ionicon" viewBox="0 0 512 512">
             <title>Arrow Back</title>
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
               d="M244 400L100 256l144-144M120 256h292" />
           </svg>
         </a>
-        <h2>CADASTRO DE PASSAGEIRO</h2>
+        <h2>CADASTRO DE VEÍCULO</h2>
       </div>
     </div>
-    {% if cpf_exists %}
-    <div class="alert alert-danger">CPF já cadastrado</div>
+    {% if plate_exists %}
+    <div class="alert alert-danger">Placa já cadastrada</div>
+    {% endif %}
+    {% if cpf_invalid %}
+    <div class="alert alert-danger">Não há motorista com o CPF informado</div>
     {% endif %}
     <form action="" method="POST">
       {{ form.csrf_token }}
       <div class="form-floating mb-3">
-        {{ form.cpf(class="form-control", placeholder="CPF") }}
-        <label for="cpf">CPF</label>
-        {% if form.errors.cpf %}
+        {{ form.plate(class="form-control", placeholder="Placa") }}
+        <label for="plate">Placa</label>
+        {% if form.errors.plate %}
         <ul>
-          {% for e in form.errors.cpf %}
+          {% for e in form.errors.plate %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>
         {% endif %}
       </div>
       <div class="form-floating mb-3">
-        {{ form.name(class="form-control", placeholder="Nome") }}
-        <label for="name">Nome</label>
-        {% if form.errors.name %}
+        {{ form.type(class="form-select", placeholder="Tipo") }}
+        <label for="type">Tipo</label>
+        {% if form.errors.type %}
         <ul>
-          {% for e in form.errors.name %}
+          {% for e in form.errors.type %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>
         {% endif %}
       </div>
       <div class="form-floating mb-3">
-        {{ form.birth_date(class="form-control", placeholder="Data de Nascimento (DD/MM/AAAA)") }}
-        <label for="birth_date">Data de Nascimento</label>
-        {% if form.errors.birth_date %}
+        {{ form.car_make(class="form-control", placeholder="Marca") }}
+        <label for="car_make">Marca</label>
+        {% if form.errors.car_make %}
         <ul>
-          {% for e in form.errors.birth_date %}
+          {% for e in form.errors.car_make %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>
         {% endif %}
       </div>
       <div class="form-floating mb-3">
-        {{ form.address(class="form-control", placeholder="Endereço") }}
-        <label for="address">Endereço</label>
-        {% if form.errors.address %}
+        {{ form.model(class="form-control", placeholder="Modelo") }}
+        <label for="model">Modelo</label>
+        {% if form.errors.model %}
         <ul>
-          {% for e in form.errors.address %}
+          {% for e in form.errors.model %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>
         {% endif %}
       </div>
       <div class="form-floating mb-3">
-        {{ form.city(class="form-control", placeholder="Cidade") }}
-        <label for="city">Cidade</label>
-        {% if form.errors.city %}
+        {{ form.year(class="form-control", placeholder="Ano") }}
+        <label for="year">Ano</label>
+        {% if form.errors.year %}
         <ul>
-          {% for e in form.errors.city %}
+          {% for e in form.errors.year %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>
         {% endif %}
       </div>
       <div class="form-floating mb-3">
-        {{ form.state(class="form-control", placeholder="Estado") }}
-        <label for="state">Estado</label>
-        {% if form.errors.state %}
+        {{ form.passenger_capacity(class="form-control", placeholder="Capacidade de Passageiros") }}
+        <label for="passenger_capacity">Capacidade de Passageiros</label>
+        {% if form.errors.passenger_capacity %}
         <ul>
-          {% for e in form.errors.state %}
+          {% for e in form.errors.passenger_capacity %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.driver_cpf(class="form-control", placeholder="Ano") }}
+        <label for="driver_cpf">CPF do Motorista</label>
+        {% if form.errors.driver_cpf %}
+        <ul>
+          {% for e in form.errors.driver_cpf %}
           <li class="small text-danger mt-1">{{ e }}</li>
           {% endfor %}
         </ul>

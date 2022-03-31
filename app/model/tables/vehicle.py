@@ -2,7 +2,7 @@ from app import db
 
 
 class Vehicle(db.Model):
-    __tablename__ = 'autos'
+    __tablename__ = 'vehicles'
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False)

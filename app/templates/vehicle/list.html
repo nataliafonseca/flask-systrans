@@ -12,34 +12,34 @@
               d="M244 400L100 256l144-144M120 256h292" />
           </svg>
         </a>
-        <h2>PASSAGEIROS</h2>
+        <h2>VEÍCULOS</h2>
       </div>
-      <a class="me-4 btn btn-primary" href="{{ url_for('register_passenger') }}">
+      <a class="me-4 btn btn-primary" href="{{ url_for('register_vehicle') }}">
         ADICIONAR
       </a>
     </div>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">CPF</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Data de Nascimento</th>
-          <th scope="col">Endereço</th>
-          <th scope="col">Cidade</th>
-          <th scope="col">Estado</th>
+          <th scope="col">Placa</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Ano</th>
+          <th scope="col">Capacidade</th>
+          <th scope="col">Motorista</th>
         </tr>
       </thead>
       <tbody>
-        {% for passenger in passengers_list %}
+        {% for vehicle in vehicles_list %}
         <tr>
-          <th scope="row">{{ '{}.{}.{}-{}'.format(passenger.cpf[:3], passenger.cpf[3:6], passenger.cpf[6:9],
-            passenger.cpf[9:]) }}
-          </th>
-          <td>{{ passenger.name }}</td>
-          <td>{{ passenger.birth_date.strftime('%d-%m-%Y') }}</td>
-          <td>{{ passenger.address }}</td>
-          <td>{{ passenger.city }}</td>
-          <td>{{ passenger.state }}</td>
+          <th scope="row">{{ vehicle.plate }}</th>
+          <td>{{ vehicle.type }}</td>
+          <td>{{ vehicle.car_make }}</td>
+          <td>{{ vehicle.model }}</td>
+          <td>{{ vehicle.year }}</td>
+          <td>{{ vehicle.passenger_capacity }}</td>
+          <td>{{ vehicle.driver_cpf }}</td>
         </tr>
         {% endfor %}
       </tbody>
