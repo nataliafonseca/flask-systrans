@@ -1,4 +1,3 @@
-from multiprocessing.sharedctypes import Value
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Length

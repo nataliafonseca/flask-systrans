@@ -1,0 +1,92 @@
+{% extends 'application.html' %}
+
+{% block inner_stylesheet %}
+<link rel="stylesheet" href="../static/css/forms.css">
+{% endblock %}
+
+{% block app_content %}
+<div class="container">
+  <div class="content">
+    <div class="subtitle">
+      <div>
+        <a class="me-4" href="{{ url_for('list_vehicles') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="back-button ionicon" viewBox="0 0 512 512">
+            <title>Arrow Back</title>
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+              d="M244 400L100 256l144-144M120 256h292" />
+          </svg>
+        </a>
+        <h2>CADASTRO DE TRANSPORTE</h2>
+      </div>
+    </div>
+    {% if plate_inválida %}
+    <div class="alert alert-danger">Não há veículo com a placa informada</div>
+    {% endif %}
+    {% if cpf_invalid %}
+    <div class="alert alert-danger">Não há passageiro com o CPF informado</div>
+    {% endif %}
+    <form action="" method="POST">
+      {{ form.csrf_token }}
+      <div class="form-floating mb-3">
+        {{ form.vehicle_plate(class="form-control", placeholder="Placa do Veículo") }}
+        <label for="vehicle_plate">Placa do Veículo</label>
+        {% if form.errors.vehicle_plate %}
+        <ul>
+          {% for e in form.errors.vehicle_plate %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.passenger_cpf(class="form-control", placeholder="CPF do Passageiro") }}
+        <label for="passenger_cpf">CPF do Passageiro</label>
+        {% if form.errors.passenger_cpf %}
+        <ul>
+          {% for e in form.errors.passenger_cpf %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.date(class="form-control", placeholder="Data") }}
+        <label for="date">Data</label>
+        {% if form.errors.date %}
+        <ul>
+          {% for e in form.errors.date %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.time(class="form-control", placeholder="Horário") }}
+        <label for="time">Horário</label>
+        {% if form.errors.time %}
+        <ul>
+          {% for e in form.errors.time %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.distance(class="form-control", placeholder="Distância (Km)") }}
+        <label for="distance">Distância (Km)</label>
+        {% if form.errors.distance %}
+        <ul>
+          {% for e in form.errors.distance %}
+          <li class="small text-danger mt-1">{{ e }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-primary" onclick="this.form.submit()">CADASTRAR</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

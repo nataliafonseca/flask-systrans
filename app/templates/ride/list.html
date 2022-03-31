@@ -12,9 +12,9 @@
               d="M244 400L100 256l144-144M120 256h292" />
           </svg>
         </a>
-        <h2>VEÍCULOS</h2>
+        <h2>TRANSPORTES</h2>
       </div>
-      <a class="me-4 btn btn-primary" href="{{ url_for('register_vehicle') }}">
+      <a class="me-4 btn btn-primary" href="{{ url_for('register_ride') }}">
         ADICIONAR
       </a>
     </div>
@@ -22,25 +22,21 @@
       <thead>
         <tr>
           <th scope="col">Placa</th>
-          <th scope="col">Tipo</th>
-          <th scope="col">Marca</th>
-          <th scope="col">Modelo</th>
-          <th scope="col">Ano</th>
-          <th scope="col">Capacidade</th>
-          <th scope="col">Motorista</th>
+          <th scope="col">Passageiro</th>
+          <th scope="col">Data/Horário</th>
+          <th scope="col">Distância (Km)</th>
+          <th scope="col">Preço</th>
         </tr>
       </thead>
       <tbody>
-        {% for vehicle in vehicles_list %}
+        {% for ride in rides_list %}
         <tr>
-          <th scope="row">{{ vehicle.plate }}</th>
-          <td>{{ vehicle.type }}</td>
-          <td>{{ vehicle.car_make }}</td>
-          <td>{{ vehicle.model }}</td>
-          <td>{{ vehicle.year }}</td>
-          <td>{{ vehicle.passenger_capacity }}</td>
-          <td>{{ '{}.{}.{}-{}'.format(vehicle.driver_cpf[:3], vehicle.driver_cpf[3:6], vehicle.driver_cpf[6:9],
-            vehicle.driver_cpf[9:]) }}</td>
+          <th scope="row">{{ ride.vehicle_plate }}</th>
+          <td>{{ '{}.{}.{}-{}'.format(ride.passenger_cpf[:3], ride.passenger_cpf[3:6], ride.passenger_cpf[6:9],
+            ride.passenger_cpf[9:]) }}</td>
+          <td>{{ ride.date_time.strftime('%d-%m-%Y %H:%M') }}</td>
+          <td>{{ ride.distance }}</td>
+          <td>R$ {{ ride.price / 100 }}</td>
         </tr>
         {% endfor %}
       </tbody>
