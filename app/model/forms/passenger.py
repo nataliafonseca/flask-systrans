@@ -7,7 +7,7 @@ class PassengerForm(FlaskForm):
     cpf = StringField(
         'cpf',
         validators=[
-            DataRequired(),
+            DataRequired('Campo obrigatório'),
             Length(
                 min=11,
                 max=11,
@@ -15,8 +15,14 @@ class PassengerForm(FlaskForm):
             ),
         ],
     )
-    name = StringField('name', validators=[DataRequired()])
-    birth_date = DateField('birth_date', validators=[DataRequired()])
-    address = StringField('address', validators=[DataRequired()])
-    city = StringField('city', validators=[DataRequired()])
-    state = StringField('state', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired('Campo obrigatório')])
+    birth_date = DateField(
+        'birth_date', validators=[DataRequired('Campo obrigatório')]
+    )
+    address = StringField(
+        'address', validators=[DataRequired('Campo obrigatório')]
+    )
+    city = StringField('city', validators=[DataRequired('Campo obrigatório')])
+    state = StringField(
+        'state', validators=[DataRequired('Campo obrigatório')]
+    )
