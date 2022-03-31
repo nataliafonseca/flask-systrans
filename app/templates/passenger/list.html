@@ -1,0 +1,51 @@
+{% extends 'application.html' %}
+
+{% block inner_stylesheet %}
+<link rel="stylesheet" href="../static/css/lists.css">
+{% endblock %}
+
+{% block app_content %}
+<div class="container">
+  <div class="content">
+    <div class="subtitle">
+      <div>
+        <a class="me-4" href="{{ url_for('dashboard') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="back-button ionicon" viewBox="0 0 512 512">
+            <title>Arrow Back</title>
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+              d="M244 400L100 256l144-144M120 256h292" />
+          </svg>
+        </a>
+        <h2>PASSAGEIROS</h2>
+      </div>
+      <a href="{{ url_for('register_passenger') }}" class="btn btn-primary">ADICIONAR</a>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">CPF</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Data de Nascimento</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for passenger in passengers_list %}
+        <tr>
+          <th scope="row">{{ '{}.{}.{}-{}'.format(passenger.cpf[:3], passenger.cpf[3:6], passenger.cpf[6:9],
+            passenger.cpf[9:]) }}
+          </th>
+          <td>{{ passenger.name }}</td>
+          <td>{{ passenger.birth_date.strftime('%d-%m-%Y') }}</td>
+          <td>{{ passenger.address }}</td>
+          <td>{{ passenger.city }}</td>
+          <td>{{ passenger.state }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -3,7 +3,7 @@ from wtforms import StringField, DateField
 from wtforms.validators import DataRequired, Length
 
 
-class DriverForm(FlaskForm):
+class PassengerForm(FlaskForm):
     cpf = StringField(
         'cpf',
         validators=[

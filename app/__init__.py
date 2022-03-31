@@ -14,5 +14,5 @@ migrate = Migrate(app, db)
 lm = LoginManager(app)
 
 
-from app.controller import index, user, driver, dashboard
+from app.controller import index, user, driver, dashboard, passenger
 from app.model.tables import user, passenger, driver, vehicle
