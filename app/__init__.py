@@ -23,4 +23,5 @@ from app.controller import (
     passenger,
     vehicle,
     ride,
+    report,
 )

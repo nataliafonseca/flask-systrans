@@ -1,0 +1,92 @@
+{% extends 'application.html' %}
+
+{% block inner_stylesheet %}
+<link rel="stylesheet" href="../static/css/report.css">
+{% endblock %}
+
+{% block app_content %}
+<div class="container">
+  <div class="content">
+    <div class="subtitle">
+      <div>
+        <a class="me-4" href="{{ url_for('dashboard') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-button ionicon" viewBox="0 0 512 512">
+            <title>Arrow Back</title>
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+              d="M244 400L100 256l144-144M120 256h292" />
+          </svg>
+        </a>
+        <h2>RELATÓRIO FINANCEIRO</h2>
+      </div>
+      <form class="filter" action="" method="POST">
+        {{ form.csrf_token }}
+        <div class="row">
+          <div class="col">
+            <div class="form-floating">
+              {{ form.initial_date(class="form-control", placeholder="Início") }}
+              <label for="initial_date">Início</label>
+              {% if form.errors.initial_date %}
+              <ul>
+                {% for e in form.errors.initial_date %}
+                <li class="small text-danger mt-1">{{ e }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating">
+              {{ form.final_date(class="form-control", placeholder="Final") }}
+              <label for="final_date">Final</label>
+              {% if form.errors.final_date %}
+              <ul>
+                {% for e in form.errors.final_date %}
+                <li class="small text-danger mt-1">{{ e }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+          <button type="submit" class="search col" onclick="this.form.submit()">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="icon-button ionicon"
+              viewBox="0 0 512 512">
+              <title>Search</title>
+              <path
+                d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0034.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 00327.3 362.6l94.09 94.09a25 25 0 0035.3-35.3zM97.92 222.72a124.8 124.8 0 11124.8 124.8 124.95 124.95 0 01-124.8-124.8z" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Placa</th>
+          <th scope="col">Passageiro</th>
+          <th scope="col">Data/Horário</th>
+          <th scope="col">Distância (Km)</th>
+          <th scope="col">Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ride in rides_list %}
+        <tr>
+          <th scope="row">{{ ride.vehicle_plate }}</th>
+          <td>{{ '{}.{}.{}-{}'.format(ride.passenger_cpf[:3], ride.passenger_cpf[3:6], ride.passenger_cpf[6:9],
+            ride.passenger_cpf[9:]) }}</td>
+          <td>{{ ride.date_time.strftime('%d-%m-%Y %H:%M') }}</td>
+          <td>{{ ride.distance }}</td>
+          <td>
+            <nobr>R$ {{ ride.price / 100 }}</nobr>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="total">
+      <span>Total:</span>
+      <nobr>R$ {{ total / 100 }}</nobr>
+    </div>
+  </div>
+</div>
+{% endblock %}

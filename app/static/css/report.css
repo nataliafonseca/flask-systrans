@@ -1,0 +1,19 @@
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+.filter button {
+  border: none;
+  background: none;
+}
+
+.total {
+  margin-left: auto;
+  font-size: 1.2rem;
+  margin-right: 50px;
+}
+
+.total nobr {
+  font-weight: bold;
+}
