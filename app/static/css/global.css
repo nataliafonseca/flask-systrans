@@ -24,3 +24,30 @@ a.btn {
 .subtitle h2 {
   margin-bottom: 0;
 }
+
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.subtitle > div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.back-button {
+  height: 2rem;
+  margin: 0;
+  background-color: #316cf4;
+  color: #ffffff;
+  padding: 0.2rem;
+  border-radius: 30px;
+  transition: 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  background: #295dcf;
+}

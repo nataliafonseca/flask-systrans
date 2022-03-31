@@ -20,14 +20,3 @@
     min-width: initial;
   }
 }
-
-.subtitle {
-  display: flex;
-  margin-bottom: 20px;
-  align-items: center;
-  gap: 20px;
-}
-
-.subtitle a {
-  justify-self: flex-start;
-}
