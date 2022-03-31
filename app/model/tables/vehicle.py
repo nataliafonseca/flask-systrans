@@ -11,12 +11,23 @@ class Vehicle(db.Model):
     model = db.Column(db.String, nullable=False)
     year = db.Column(db.String, nullable=False)
     passenger_capacity = db.Column(db.String, nullable=False)
-    driver_cpf = db.Column(db.String, nullable=False)       # falta validar com do motorista
+    driver_cpf = db.Column(
+        db.String, db.ForeignKey('people.cpf'), nullable=False
+    )
 
     def get_id(self):
         return str(self.id)
 
-    def __init__(self, type, plate, car_make, model, year, passenger_capacity, driver_cpf):
+    def __init__(
+        self,
+        type,
+        plate,
+        car_make,
+        model,
+        year,
+        passenger_capacity,
+        driver_cpf,
+    ):
         self.type = type
         self.plate = plate
         self.car_make = car_make

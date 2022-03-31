@@ -1,24 +1,24 @@
-from msilib.schema import Class
 from app import db
 from app.model.tables.person import Person
+
 
 class Passenger(Person):
     __tablename__ = 'passengers'
 
     id = db.Column(db.Integer, db.ForeignKey('people.id'), primary_key=True)
-    cidade = db.Column(db.String, nullable=False)
-    uf = db.Column(db.String, nullable=False) 
+    city = db.Column(db.String, nullable=False)
+    state = db.Column(db.String, nullable=False)
 
     def get_id(self):
         return str(self.id)
 
-    def __init__(self, cpf, name, birth_date, address, cidade, uf):
+    def __init__(self, cpf, name, birth_date, address, city, state):
         self.cpf = cpf
         self.name = name
         self.birth_date = birth_date
         self.address = address
-        self.cidade = cidade
-        self.uf = uf
+        self.city = city
+        self.state = state
 
-#    def __repr__(self):
-#        return f'<User {self.cpf}>'
+    def __repr__(self):
+        return f'<Passenger {self.cpf}>'

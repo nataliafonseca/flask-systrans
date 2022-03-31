@@ -16,5 +16,5 @@ class Driver(Person):
         self.birth_date = birth_date
         self.address = address
 
-#    def __repr__(self):
-#        return f'<User {self.cpf}>'
+    def __repr__(self):
+        return f'<Driver {self.cpf}>'

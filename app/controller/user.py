@@ -1,9 +1,10 @@
 from app import app, db
+from app.model.forms.login import LoginForm
 from app.model.forms.register import RegisterForm
 from app.model.tables.user import User
-from bcrypt import gensalt, hashpw
+from bcrypt import checkpw, gensalt, hashpw
 from flask import redirect, render_template, url_for
-from flask_login import login_user, current_user
+from flask_login import current_user, login_user, logout_user
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -48,3 +49,31 @@ def register():
         username_taken=username_taken,
         cpf_exists=cpf_exists,
     )
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
+
+    form = LoginForm()
+    authentication_error = False
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+
+        if user and checkpw(form.password.data.encode('utf8'), user.password):
+            login_user(user)
+            return redirect(url_for('dashboard'))
+        else:
+            authentication_error = True
+
+    return render_template(
+        'login.html', form=form, authentication_error=authentication_error
+    )
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))

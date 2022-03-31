@@ -14,3 +14,13 @@ body {
 a {
   text-decoration: none;
 }
+
+a.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle h2 {
+  margin-bottom: 0;
+}
