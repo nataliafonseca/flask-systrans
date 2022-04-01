@@ -7,9 +7,6 @@ class Driver(Person):
 
     id = db.Column(db.Integer, db.ForeignKey('people.id'), primary_key=True)
 
-    def get_id(self):
-        return str(self.id)
-
     def __init__(self, cpf, name, birth_date, address):
         self.cpf = cpf
         self.name = name

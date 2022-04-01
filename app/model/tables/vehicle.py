@@ -15,9 +15,6 @@ class Vehicle(db.Model):
         db.String, db.ForeignKey('people.cpf'), nullable=False
     )
 
-    def get_id(self):
-        return str(self.id)
-
     def __init__(
         self,
         type,

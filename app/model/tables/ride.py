@@ -15,9 +15,6 @@ class Ride(db.Model):
     distance = db.Column(db.Float, nullable=False)
     price = db.Column(db.Integer, nullable=False)
 
-    def get_id(self):
-        return str(self.id)
-
     def __init__(
         self, vehicle_plate, passenger_cpf, date_time, distance, price
     ):

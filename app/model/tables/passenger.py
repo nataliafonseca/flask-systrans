@@ -9,9 +9,6 @@ class Passenger(Person):
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
 
-    def get_id(self):
-        return str(self.id)
-
     def __init__(self, cpf, name, birth_date, address, city, state):
         self.cpf = cpf
         self.name = name
